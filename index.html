@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>svg demo</title>
+
+	<style>
+		body {
+			background: #eee;
+			color: #333;
+			margin: 0;
+		}
+		svg {
+			border: 1px solid #ccc;
+			background: #eee;
+		}
+		.container {
+			max-width: 1000px;
+			width: 100%;
+			margin: 0 auto;
+			padding-top: 50px;
+		}
+		.demo {
+			padding: 20px 30px;
+			border: 4px solid #999;
+			border-radius: 10px;
+			margin-bottom: 50px;
+			background: #fff;
+		}
+		.tips {
+			font-style: italic;
+			color: #999;
+		}
+		.progress {
+			width: 100%;
+			height: 5px;
+			position: fixed;
+			top: 0;
+			z-index: 999;
+		}
+		.progress span {
+			-webkit-transition: width .2s linear;
+			        transition: width .2s linear;
+			display: block;
+			height: 100%;
+			width: 0;
+			background: #04ffea;
+		}
+		.code-highlight {
+			color: #f04848;
+			background: #eee;
+			margin: 0 4px;
+			padding: 0 4px;
+			border-radius: 4px;
+		}
+	</style>
+	<link rel="stylesheet" href="./prism.css">
+</head>
+<body>
+	<div class="progress"><span id="J_progress"></span></div>
+
+	<div class="container">
+		<div class="demo">
+			<h1>Demo 1</h1>
+			<pre>
+<code class="language-html line-numbers">&lt;svg width="300" height="200"&gt;
+	&lt;rect width="100%" height="100%" fill="#f04848" &gt;
+
+	&lt;circle cx="150" cy="100" r="80" fill="#ff6700" &gt;
+
+	&lt;text x="150" y="115" font-size="40" text-anchor="middle" fill="#fff"&gt;SVG&lt;/text&gt;
+&lt;/svg&gt;</code>
+			</pre>
+
+			<svg width="300" height="200">
+				<rect width="100%" height="100%" fill="#f04848" />
+
+				<circle cx="150" cy="100" r="80" fill="#ff6700" />
+
+				<text x="150" y="115" font-size="40" text-anchor="middle" fill="#fff">SVG</text>
+			</svg>			
+		</div>
+
+		<div class="demo">
+			<h1>Demo 2</h1>
+				<pre>
+<code class="language-html line-numbers">&lt;svg width="200" height="200" viewBox="0 0 100 100"&gt;
+
+	&lt;rect width="100%" height="100%" fill="#f04848" &gt;
+
+	&lt;circle cx="100" cy="100" r="100" fill="#ff6700" &gt;
+
+&lt;/svg&gt;</code>
+			</pre>
+			<svg width="200" height="200" viewBox="0 0 100 100">
+				<rect width="100%" height="100%" fill="#f04848" />
+
+				<circle cx="100" cy="100" r="100" fill="#ff6700" />
+			</svg>			
+		</div>
+
+		<div class="demo">
+			<h1>Demo 3</h1>
+			<pre>
+<code class="language-html line-numbers">&lt;svg width="200" height="110"&gt;
+
+  &lt;rect x="10" y="10" width="30" height="30" stroke="#f04848" fill="transparent" stroke-width="3"/&gt;
+  &lt;rect x="60" y="10" rx="10" ry="10" width="30" height="30" stroke="#f04848" fill="transparent" stroke-width="3"/&gt;
+
+  &lt;circle cx="120" cy="25" r="15" stroke="#f04848" fill="transparent" stroke-width="3"/&gt;
+  &lt;ellipse cx="165" cy="25" rx="20" ry="5" stroke="#f04848" fill="transparent" stroke-width="3"/&gt;
+
+  &lt;line x1="10" x2="40" y1="70" y2="90" stroke="#f04848" fill="transparent" stroke-width="3"/&gt;
+  &lt;polyline points="60 70 65 80 70 75 75 85 80 80 85 90" stroke="#f04848" fill="transparent" stroke-width="3"/&gt;
+
+  &lt;polygon points="120 65, 125 75, 135 80, 125 85, 120 95, 115 85, 105 80, 115 75" stroke="#f04848" fill="transparent" stroke-width="3"/&gt;
+
+  &lt;path d="M145,80 Q155,55 165,80 T185,80" fill="none" stroke="#f04848" stroke-width="3"/&gt;
+&lt;/svg&gt;</code>
+			</pre>
+			<svg width="200" height="110" version="1.1" xmlns="http://www.w3.org/2000/svg">
+
+				<rect x="10" y="10" width="30" height="30" stroke="#f04848" fill="transparent" stroke-width="3"/>
+				<rect x="60" y="10" rx="10" ry="10" width="30" height="30" stroke="#f04848" fill="transparent" stroke-width="3"/>
+
+				<circle cx="120" cy="25" r="15" stroke="#f04848" fill="transparent" stroke-width="3"/>
+				<ellipse cx="165" cy="25" rx="20" ry="5" stroke="#f04848" fill="transparent" stroke-width="3"/>
+
+				<line x1="10" x2="40" y1="70" y2="90" stroke="#f04848" fill="transparent" stroke-width="3"/>
+				<polyline points="60 70 65 80 70 75 75 85 80 80 85 90" stroke="#f04848" fill="transparent" stroke-width="3"/>
+
+				<polygon points="120 65, 125 75, 135 80, 125 85, 120 95, 115 85, 105 80, 115 75" stroke="#f04848" fill="transparent" stroke-width="3"/>
+
+				<path d="M145,80 Q155,55 165,80 T185,80" fill="none" stroke="#f04848" stroke-width="3"/>
+			</svg>	
+		</div>
+
+		<div class="demo">
+			<h1>基本属性</h1>
+			<ul>
+				<li>
+					<h2>上色</h2>
+					<p>涂色基本都可以通过<span class="code-highlight">fill</span>和<span class="code-highlight">stroke</span>来搞定，<span class="code-highlight">fill</span>属性设置内部颜色（填充），<span class="code-highlight">stroke</span>属性设置线条颜色。</p>
+					<p>此外，<span class="code-highlight">fill-opacity</span>和<span class="code-highlight">stroke-opacity</span>可以设置填充／线条的不透明度。</p>
+					<p class="tips">如果x-opacity和rgba同时使用，那它们都将被调用，请避免。</p>
+				</li>
+				<li>
+					<h2>描边</h2>
+					<p><span class="code-highlight">stroke</span>的一些其它属性：</p>
+					<ul>
+						<li>
+							<p><span class="code-highlight">stroke-width</span>：描边的宽度</p>
+						</li>
+						<li>
+							<p><span class="code-highlight">stroke-linecap</span>：描边端点的形状</p>
+							<p class="tips">square属性会稍微超出实际路径的范围，超出的大小由stroke-width控制</p>
+							<svg width="160" height="330">
+								<polyline points="30 70 80 30 130 70" fill="transparent" stroke-width="20" stroke="#f04848" stroke-linecap="butt"/>
+								<text x="80" y="100" font-size="14" text-anchor="middle" fill="#333">stroke-linecap="butt"</text>
+								<polyline points="30 170 80 130 130 170" fill="transparent" stroke-width="20" stroke="#f04848" stroke-linecap="square"/>
+								<text x="80" y="200" font-size="14" text-anchor="middle" fill="#333">stroke-linecap="square"</text>
+								<polyline points="30 270 80 230 130 270" fill="transparent" stroke-width="20" stroke="#f04848" stroke-linecap="round"/>
+								<text x="80" y="300" font-size="14" text-anchor="middle" fill="#333">stroke-linecap="round"</text>
+							</svg>
+						</li>
+						<li>
+							<p><span class="code-highlight">stroke-linejoin</span>：折线描边的连接处描绘方法</p>
+							<svg width="160" height="330">
+								<polyline points="30 70 80 30 130 70" fill="transparent" stroke-width="20" stroke="#f04848" stroke-linejoin="miter"/>
+								<text x="80" y="100" font-size="14" text-anchor="middle" fill="#333">stroke-linejoin="miter"</text>
+								<polyline points="30 170 80 130 130 170" fill="transparent" stroke-width="20" stroke="#f04848" stroke-linejoin="round"/>
+								<text x="80" y="200" font-size="14" text-anchor="middle" fill="#333">stroke-linejoin="round"</text>
+								<polyline points="30 270 80 230 130 270" fill="transparent" stroke-width="20" stroke="#f04848" stroke-linejoin="bevel"/>
+								<text x="80" y="300" font-size="14" text-anchor="middle" fill="#333">stroke-linejoin="bevel"</text>
+							</svg>
+						</li>
+						<li>
+							<p><span class="code-highlight">stroke-dasharray</span>：虚线描边模式</p>
+							<p class="tips">参数为一组数字，第一个参数为单数数字为实线长度，偶数数字为空白长度，数字之间必须用逗号隔开，空白会被忽略</p>
+							<svg width="300" height="100">
+								<path d="M 20 30 L 280 30" fill="transparent" stroke="#f04848" stroke-width="4" stroke-dasharray="10, 5"/>
+								<text x="150" y="70" font-size="14" text-anchor="middle" fill="#333">stroke-dasharray="10, 5"</text>
+							</svg>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<h2>使用CSS</h2>
+					<p>除了在定义特定属性，也可以通过CSS来修改指定样式。可以使用行内样式及<span class="code-highlight">style</span>标签对写法。</p>
+					<p class="tips">注意，background-color和border需要替换成fill和stroke、stroke-dasharray等，但是不包括渐变和背景图等。</p>
+					<pre>
+<code class="language-html line-numbers">&lt;!-- 行内 --&gt;
+&lt;svg width="200" height="200"&gt;
+	&lt;rect x="10" height="180" y="10" width="180" style="stroke: #f04848; fill: transparent;"/&gt;
+&lt;/svg&gt;
+
+&lt;!-- style标签对 需要写在&lt;defs&gt;标签对内，不会展示在svg图形内 --&gt;
+&lt;svg width="140" height="140"&gt;
+	&lt;defs&gt;
+   	 	&lt;style type="text/css"&gt;
+       		#MyRect {
+         		stroke: #f04848;
+         		fill: transparent;
+       		}
+    	&lt;/style&gt;
+  	&lt;/defs&gt;
+	&lt;rect x="30" height="80" y="30" width="80" id="MyRect"/&gt;
+&lt;/svg&gt;</code>
+					</pre>
+					<svg width="140" height="140">
+						<rect x="30" height="80" y="30" width="80" style="stroke: #f04848; fill: transparent;"/>
+					</svg>
+				</li>
+			</ul>
+		</div>
+
+		<div class="demo">
+			<h1>路径（&lt;path&gt;）：直线命令</h1>
+			<ul>
+				<li>
+					<h2>M(Move to)</h2>
+					<p>需要两个参数，分别是需要移动到的点的x轴和y轴的坐标。只会移动画笔，但不会在两点之间画线。</p>
+				</li>
+				<li>
+					<h2>L(Line to)</h2>
+					<p>需要两个参数，分别是一个点的x轴和y轴坐标，L命令将会在当前位置和新位置（L前面画笔所在的点）之间画一条线段。</p>
+					<p class="tips">另外还有两个简写命令，用来绘制平行线和垂直线。H，绘制平行线。V，绘制垂直线。这两个命令都只带一个参数，标明在x轴或y轴移动到的位置。</p>
+					<p class="tips">H和V可以使用相对命令h和v，绝对命令（H、V）参数表示绘制坐标，相对命令（h、v）参数表示绘制距离。</p>
+				</li>
+				<li>
+					<h2>Z(or z)</h2>
+					<p>闭合路径，Z命令会从当前点画一条直线到路径的起点，尽管我们不总是需要闭合路径，但是它还是经常被放到路径的最后。另外，Z命令不用区分大小写。</p>
+				</li>
+			</ul>
+			<pre>
+<code class="language-html line-numbers">&lt;svg width="100px" height="100px"&gt;
+
+	&lt;path d="M10 10 L 10 90 L 90 90 L 90 10 L 10 10" fill="transparent" stroke="#f04848"/&gt;
+  
+	&lt;path d="M10 10 H 90 V 90 H 10 L 10 10" fill="transparent" stroke="#f04848"/&gt;
+
+	&lt;path d="M10 10 H 90 V 90 H 10 Z" fill="transparent" stroke="#f04848"/&gt;
+
+	&lt;path d="M10 10 h 80 v 80 h -80 Z" fill="transparent" stroke="#f04848"/&gt;
+
+&lt;/svg&gt;</code>
+			</pre>
+
+			<svg width="100px" height="100px" version="1.1" xmlns="http://www.w3.org/2000/svg">
+			  
+				<path d="M10 10 H 90 V 90 H 10 L 10 10" fill="transparent" stroke="#f04848"/>
+
+			</svg>
+		</div>
+
+		<div class="demo">
+			<h1>路径（&lt;path&gt;）：曲线命令</h1>
+			<ul>
+				<li>
+					<h2>三次贝塞尔曲线（C）</h2>
+					<p>我们从稍微复杂一点的三次贝塞尔曲线C入手，三次贝塞尔曲线需要定义一个点和两个控制点，所以用C命令创建三次贝塞尔曲线，需要设置三组坐标参数：起点控制点，终点控制点，终点坐标。</p>
+
+					<pre>
+<code class="language-html line-numbers">&lt;svg width="200px" height="100px"&gt;
+	&lt;path d="M 30 40 C 40 50, 60 50, 70 40" fill="transparent" stroke="#333"/&gt;
+
+	&lt;path d="M 130 40 C 120 70, 180 70, 170 40" fill="transparent" stroke="#333"/&gt;
+&lt;/svg&gt;</code>
+					</pre>
+
+					<svg width="200px" height="100px">
+						<path d="M 30 40 C 40 50, 60 50, 70 40" fill="transparent" stroke="#333"/>
+						<circle cx="30" cy="40" r="2" fill="#f04848"/>
+						<circle cx="40" cy="50" r="2" fill="#f04848"/>
+						<circle cx="60" cy="50" r="2" fill="#f04848"/>
+						<circle cx="70" cy="40" r="2" fill="#f04848"/>
+						<line x1="30" x2="40" y1="40" y2="50" fill="transparent" stroke="#f04848"/>
+						<line x1="60" x2="70" y1="50" y2="40" fill="transparent" stroke="#f04848"/>
+
+						<path d="M 130 40 C 120 70, 180 70, 170 40" fill="transparent" stroke="#333"/>
+						<circle cx="130" cy="40" r="2" fill="#f04848"/>
+						<circle cx="120" cy="70" r="2" fill="#f04848"/>
+						<circle cx="180" cy="70" r="2" fill="#f04848"/>
+						<circle cx="170" cy="40" r="2" fill="#f04848"/>
+						<line x1="130" x2="120" y1="40" y2="70" fill="transparent" stroke="#f04848"/>
+						<line x1="180" x2="170" y1="70" y2="40" fill="transparent" stroke="#f04848"/>
+					</svg>
+				</li>
+				<li>
+					<h2>简写命令（S）</h2>
+					<p>如果S命令跟在一个C命令或者另一个S命令的后面，它的第一个控制点，就会被假设成前一个控制点的对称点。如果S命令单独使用，前面没有C命令或者另一个S命令，那么它的两个控制点就会被假设为同一个点。</p>
+					<p class="tips">S命令只有两个参数，分别是终点的控制点和终点坐标。下图实例中蓝色的控制杆未做参数设置，而是默认前一个C参数的终点控制点的对称控制杆。</p>
+
+					<pre>
+<code class="language-html line-numbers">&lt;svg width="190px" height="160px"&gt;
+	&lt;path d="M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80" stroke="black" fill="transparent"/&gt;
+&lt;/svg&gt;</code>
+					</pre>
+
+					<svg width="190px" height="160px">
+						<path d="M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80" stroke="black" fill="transparent"/>
+						<circle cx="10" cy="80" r="2" fill="#f04848"/>
+						<circle cx="40" cy="10" r="2" fill="#f04848"/>
+						<line x1="10" x2="40" y1="80" y2="10" fill="transparent" stroke="#f04848"/>
+						<circle cx="65" cy="10" r="2" fill="#f04848"/>
+						<circle cx="95" cy="80" r="2" fill="#f04848"/>
+						<line x1="65" x2="95" y1="10" y2="80" fill="transparent" stroke="#f04848"/>
+						<circle cx="125" cy="150" r="2" fill="#04ffea"/>
+						<line x1="95" x2="125" y1="80" y2="150" fill="transparent" stroke="#04ffea"/>
+						<circle cx="150" cy="150" r="2" fill="#f04848"/>
+						<circle cx="180" cy="80" r="2" fill="#f04848"/>
+						<line x1="150" x2="180" y1="150" y2="80" fill="transparent" stroke="#f04848"/>
+					</svg>
+				</li>
+				<li>
+					<h2>二次贝塞尔曲线（Q）</h2>
+					<p>二次贝塞尔曲线Q只需要一个控制点，用来确定起点和终点的曲线斜率。因此它需要两组参数，控制点和终点坐标。</p>
+					<pre>
+<code class="language-html line-numbers">&lt;svg width="190px" height="100px"&gt;
+	&lt;path d="M10 80 Q 95 10 180 80" stroke="black" fill="transparent"/&gt;
+&lt;/svg&gt;</code>
+					</pre>
+					<svg width="190px" height="100px">
+						<path d="M10 80 Q 95 10 180 80" stroke="black" fill="transparent"/>
+						<circle cx="10" cy="80" r="2" fill="#f04848"/>
+						<circle cx="95" cy="10" r="2" fill="#f04848"/>
+						<circle cx="180" cy="80" r="2" fill="#f04848"/>
+						<line x1="10" x2="95" y1="80" y2="10" fill="transparent" stroke="#f04848"/>
+						<line x1="95" x2="180" y1="10" y2="80" fill="transparent" stroke="#f04848"/>
+					</svg>
+				</li>
+				<li>
+					<h2>简写命令（T）</h2>
+					<p>二次贝塞尔曲线的简写T命令，可以仅通过一个参数来延长曲线。</p>
+					<pre>
+<code class="language-html line-numbers">&lt;svg width="190px" height="160px"&gt;
+	&lt;path d="M 10 80 Q 52.5 10, 95 80 T 180 80" fill="transparent" stroke="#333"/&gt;
+&lt;/svg&gt;	</code>
+					</pre>
+					<svg width="190px" height="160px">
+						<path d="M 10 80 Q 52.5 10, 95 80 T 180 80" fill="transparent" stroke="#333"/>
+						<circle cx="10" cy="80" r="2" fill="#f04848"/>
+						<circle cx="52.5" cy="10" r="2" fill="#f04848"/>
+						<circle cx="95" cy="80" r="2" fill="#f04848"/>
+						<circle cx="137.5" cy="150" r="2" fill="#04ffea"/>
+						<circle cx="180" cy="80" r="2" fill="#f04848"/>
+						<line x1="10" x2="52.5" y1="80" y2="10" fill="transparent" stroke="#f04848"/>
+						<line x1="52.5" x2="95" y1="10" y2="80" fill="transparent" stroke="#f04848"/>
+						<line x1="95" x2="137.5" y1="80" y2="150" fill="transparent" stroke="#04ffea"/>
+						<line x1="137.5" x2="180" y1="150" y2="80" fill="transparent" stroke="#04ffea"/>
+					</svg>
+				</li>
+			</ul>
+		</div>
+
+	</div>
+
+	<script src="prism.js"></script>
+	<script>
+		window.onscroll = window.onresize =  function () {
+			var sTop = document.body.scrollTop || document.documentElement.scrollTop;
+			var dHeight = document.body.clientHeight - window.innerHeight;
+			
+			document.querySelector('#J_progress').style.width = sTop / dHeight * 100 + '%';
+		};
+	</script>
+</body>
+</html>
