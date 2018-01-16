@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>svg demo</title>
+	<title>SVG_document</title>
 
 	<style>
 		body {
@@ -201,6 +201,11 @@
        		#MyRect {
          		stroke: #f04848;
          		fill: transparent;
+         		-webkit-transition: all .2s ease;
+         		        transition: all .2s ease;
+       		}
+       		#MyRect:hover {
+				fill: #f04848;
        		}
     	&lt;/style&gt;
   	&lt;/defs&gt;
@@ -208,7 +213,119 @@
 &lt;/svg&gt;</code>
 					</pre>
 					<svg width="140" height="140">
-						<rect x="30" height="80" y="30" width="80" style="stroke: #f04848; fill: transparent;"/>
+						<rect x="30" height="80" y="30" width="80" style="stroke: #f04848;" id="MyRect"/>
+						<defs>
+							<style type="text/css">
+								#MyRect {
+									fill: transparent;
+									-webkit-transition: all .2s ease;
+									        transition: all .2s ease;
+					       		}
+								#MyRect:hover {
+									fill: #f04848;
+					       		}
+							</style>
+						</defs>
+					</svg>
+				</li>
+			</ul>
+		</div>
+
+		<div class="demo">
+			<h1>渐变</h1>
+			<p>有两种类型的渐变：线性渐变和径向渐变。你<b>必须</b>给渐变内容指定一个id属性，否则文档内的其他元素就不能引用它。为了让渐变能被重复使用，渐变内容需要定义在<span class="code-highlight">&lt;defs&gt;</span>标签内部，而不是定义在形状上面。</p>
+			<ul>
+				<li>
+					<h2>线性渐变</h2>
+					<p>线性渐变需要在SVG文件的<span class="code-highlight">&lt;defs&gt;</span>内部创建一个<span class="code-highlight">&lt;linearGradient&gt;</span>节点。</p>
+					<pre>
+<code class="language-html line-numbers">&lt;!-- stop标示渐变节点，x1、x2、y1、y2标示渐变方向 --&gt;
+&lt;svg width="120" height="240"&gt;
+	&lt;defs&gt;
+		&lt;linearGradient id="gradient1" x1="0" x2="1" y1="0" y2="1"&gt;
+			&lt;stop offset="0%" stop-color="#f04848" stop-opacity="0.2"/&gt;
+			&lt;stop offset="100%" stop-color="#f04848" stop opacity="1"/&gt;
+		&lt;/linearGradient&gt;
+	&lt;/defs&gt;
+	&lt;rect x="10" y="10" width="100" height="100" fill="url(#gradient1)"/&gt;
+&lt;/svg&gt;</code>
+					</pre>
+					<svg width="120" height="120">
+						<defs>
+							<linearGradient id="gradient1" x1="0" x2="1" y1="0" y2="1">
+								<stop offset="0%" stop-color="#f04848" stop-opacity="0.2"/>
+								<stop offset="100%" stop-color="#f04848" stop opacity="1"/>
+							</linearGradient>
+						</defs>
+						<rect x="10" y="10" width="100" height="100" fill="url(#gradient1)"/>
+					</svg>
+				</li>
+				<li>
+					<h2>径向渐变</h2>
+					<p>径向渐变需要在SVG文件的<span class="code-highlight">&lt;defs&gt;</span>内部创建一个<span class="code-highlight">&lt;radialGradient&gt;</span>节点。</p>
+					<p class="tips">radialGradient节点有一个特殊属性spreadMethod，在渐变范围小于图形范围的时候的渲染方式，有3种属性，pad表示超出范围不渐变，repeat表示超出范围从渐变头开始渐变，reflect表示超出范围重复渐变。</p>
+					<pre>
+<code class="language-html line-numbers">&lt;!-- stop标示渐变节点，cx、cy、r标示渐变方向和渐变半径 --&gt;
+&lt;svg width="360" height="120"&gt;
+	&lt;defs&gt;
+		&lt;radialGradient id="radial1" cx=".5" cy=".5" r=".2" spreadMethod="pad"&gt;
+			&lt;stop offset="0%" stop-color="#f04848" stop-opacity="0"/&gt;
+			&lt;stop offset="100%" stop-color="#f04848" stop-opacity="1"/&gt;
+		&lt;/radialGradient&gt;
+		&lt;radialGradient id="radial2" cx=".5" cy=".5" r=".2" spreadMethod="repeat"&gt;
+			&lt;stop offset="0%" stop-color="#f04848" stop-opacity="0"/&gt;
+			&lt;stop offset="100%" stop-color="#f04848" stop-opacity="1"/&gt;
+		&lt;/radialGradient&gt;
+		&lt;radialGradient id="radial3" cx=".5" cy=".5" r=".2" spreadMethod="reflect"&gt;
+			&lt;stop offset="0%" stop-color="#f04848" stop-opacity="0"/&gt;
+			&lt;stop offset="100%" stop-color="#f04848" stop-opacity="1"/&gt;
+		&lt;/radialGradient&gt;
+		&lt;style&gt;
+			#RadialRect1 {
+				fill: url(#radial1);
+			}
+			#RadialRect2 {
+				fill: url(#radial2);
+			}
+			#RadialRect3 {
+				fill: url(#radial3);
+			}
+		&lt;/style&gt;
+	&lt;/defs&gt;
+	&lt;rect x="10" y="10" width="100" height="100" id="RadialRect1"/&gt;
+	&lt;rect x="130" y="10" width="100" height="100" id="RadialRect2"/&gt;
+	&lt;rect x="250" y="10" width="100" height="100" id="RadialRect3"/&gt;
+&lt;/svg&gt;</code>
+					</pre>
+					<svg width="360" height="120">
+						<defs>
+							<radialGradient id="radial1" cx=".5" cy=".5" r=".2" spreadMethod="pad">
+								<stop offset="0%" stop-color="#f04848" stop-opacity="0"/>
+								<stop offset="100%" stop-color="#f04848" stop-opacity="1"/>
+							</radialGradient>
+							<radialGradient id="radial2" cx=".5" cy=".5" r=".2" spreadMethod="repeat">
+								<stop offset="0%" stop-color="#f04848" stop-opacity="0"/>
+								<stop offset="100%" stop-color="#f04848" stop-opacity="1"/>
+							</radialGradient>
+							<radialGradient id="radial3" cx=".5" cy=".5" r=".2" spreadMethod="reflect">
+								<stop offset="0%" stop-color="#f04848" stop-opacity="0"/>
+								<stop offset="100%" stop-color="#f04848" stop-opacity="1"/>
+							</radialGradient>
+							<style>
+								#RadialRect1 {
+									fill: url(#radial1);
+								}
+								#RadialRect2 {
+									fill: url(#radial2);
+								}
+								#RadialRect3 {
+									fill: url(#radial3);
+								}
+							</style>
+						</defs>
+						<rect x="10" y="10" width="100" height="100" id="RadialRect1"/>
+						<rect x="130" y="10" width="100" height="100" id="RadialRect2"/>
+						<rect x="250" y="10" width="100" height="100" id="RadialRect3"/>
 					</svg>
 				</li>
 			</ul>
