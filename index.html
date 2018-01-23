@@ -63,51 +63,9 @@
 	
 		<div class="demo">
 			<h1>SVG分享文档</h1>
-			<p>开始之前，我们先看几个小demo，来对<span class="code-highlight">&lt;svg></span>的语法有个大致的了解。</p>
-		</div>
-		
-		<div class="demo">
-			<h1>Demo 1</h1>
-			<pre>
-<code class="language-html line-numbers">&lt;svg width="300" height="200"&gt;
-	&lt;rect width="100%" height="100%" fill="#f04848" &gt;
+			<p>开始之前，我们先看个小demo，来对<span class="code-highlight">&lt;svg></span>的语法有个大致的了解。</p>
 
-	&lt;circle cx="150" cy="100" r="80" fill="#ff6700" &gt;
-
-	&lt;text x="150" y="115" font-size="40" text-anchor="middle" fill="#fff"&gt;SVG&lt;/text&gt;
-&lt;/svg&gt;</code>
-			</pre>
-
-			<svg width="300" height="200">
-				<rect width="100%" height="100%" fill="#f04848" />
-
-				<circle cx="150" cy="100" r="80" fill="#ff6700" />
-
-				<text x="150" y="115" font-size="40" text-anchor="middle" fill="#fff">SVG</text>
-			</svg>			
-		</div>
-
-		<div class="demo">
-			<h1>Demo 2</h1>
-				<pre>
-<code class="language-html line-numbers">&lt;svg width="200" height="200" viewBox="0 0 100 100"&gt;
-
-	&lt;rect width="100%" height="100%" fill="#f04848" &gt;
-
-	&lt;circle cx="100" cy="100" r="100" fill="#ff6700" &gt;
-
-&lt;/svg&gt;</code>
-			</pre>
-			<svg width="200" height="200" viewBox="0 0 100 100">
-				<rect width="100%" height="100%" fill="#f04848" />
-
-				<circle cx="100" cy="100" r="100" fill="#ff6700" />
-			</svg>			
-		</div>
-
-		<div class="demo">
-			<h1>Demo 3</h1>
-			<pre>
+						<pre>
 <code class="language-html line-numbers">&lt;svg width="200" height="110"&gt;
 
   &lt;rect x="10" y="10" width="30" height="30" stroke="#f04848" fill="transparent" stroke-width="3"/&gt;
@@ -138,7 +96,24 @@
 				<polygon points="120 65, 125 75, 135 80, 125 85, 120 95, 115 85, 105 80, 115 75" stroke="#f04848" fill="transparent" stroke-width="3"/>
 
 				<path d="M145,80 Q155,55 165,80 T185,80" fill="none" stroke="#f04848" stroke-width="3"/>
-			</svg>	
+			</svg>
+		</div>
+
+		<div class="demo">
+			<h1>视图（viewBox）</h1>
+			<p><span class="code-highlight">viewBox</span>属性用来定义SVG元素的可视范围，需要两组坐标，取两组坐标定义的矩形范围作为可显示范围，然后放大至SVG元素的尺寸。</p>
+
+				<pre>
+<code class="language-html line-numbers">&lt;svg width="200" height="200" viewBox="0 0 100 100"&gt;
+	&lt;rect width="100%" height="100%" fill="#f04848" &gt;
+	&lt;circle cx="100" cy="100" r="100" fill="#ff6700" &gt;
+&lt;/svg&gt;</code>
+			</pre>
+			<svg width="200" height="200" viewBox="0 0 100 100">
+				<rect width="100%" height="100%" fill="#f04848" />
+
+				<circle cx="100" cy="100" r="100" fill="#ff6700" />
+			</svg>			
 		</div>
 
 		<div class="demo">
@@ -235,6 +210,105 @@
 					</svg>
 				</li>
 			</ul>
+		</div>
+
+		<div class="demo">
+			<h1>矩形（rect）</h1>
+			<p><span class="code-highlight">rect</span>用来绘制一个矩形，它可以通过<span class="code-highlight">x</span>、<span class="code-highlight">y</span>、<span class="code-highlight">width</span>和<span class="code-highlight">height</span>来确定一个矩形的绘制范围。</p>
+			<p class="tips">rect还有一个rx/ry属性，用来绘制矩形的圆角。</p>
+
+			<pre>
+<code class="language-html line-numbers">&lt;svg width="200" height="100">
+	&lt;rect x="10" y="10" width="80" height="80" fill="transparent" stroke="#f04848" />
+
+	&lt;rect x="110" y="10" rx="20" ry="20" width="80" height="80" fill="transparent" stroke="#f04848" />
+&lt;/svg></code>
+			</pre>
+
+			<svg width="200" height="100">
+				<rect x="10" y="10" width="80" height="80" fill="transparent" stroke="#f04848" />
+
+				<rect x="110" y="10" rx="20" ry="20" width="80" height="80" fill="transparent" stroke="#f04848" />
+			</svg>
+		</div>
+
+		<div class="demo">
+			<h1>圆形</h1>
+			<ul>
+				<li>
+					<h2>正圆（circle）</h2>
+					<p><span class="code-highlight">circle</span>用来绘制一个正圆，它可以通过<span class="code-highlight">cx</span>、<span class="code-highlight">cy</span>（圆心）和<span class="code-highlight">r</span>（半径）来绘制一个圆心在（cx, cy），半径为r的圆形。</p>
+
+					<pre>
+<code class="language-html line-numbers">&lt;svg width="100" height="100">
+	&lt;circle cx="50" cy="50" r="40" fill="transparent" stroke="#f04848" />
+&lt;/svg></code>
+					</pre>
+
+					<svg width="100" height="100">
+						<circle cx="50" cy="50" r="40" fill="transparent" stroke="#f04848" />
+					</svg>
+				</li>
+				<li>
+					<h2>椭圆（ellipse）</h2>
+					<p><span class="code-highlight">ellipse</span>用来绘制一个椭圆，它可以通过<span class="code-highlight">cx</span>、<span class="code-highlight">cy</span>（圆心）、<span class="code-highlight">rx</span>和<span class="code-highlight">ry</span>（半径）来绘制一个圆心在（cx, cy），x轴半径为rx，y轴半径为ry的椭圆。</p>
+
+					<pre>
+<code class="language-html line-numbers">&lt;svg width="100" height="100">
+	&lt;ellipse cx="50" cy="50" rx="40" ry="15" fill="transparent" stroke="#f04848" />
+&lt;/svg></code>
+					</pre>
+
+					<svg width="100" height="100">
+						<ellipse cx="50" cy="50" rx="40" ry="15" fill="transparent" stroke="#f04848" />
+					</svg>
+				</li>
+			</ul>
+		</div>
+
+		<div class="demo">
+			<h1>直线（line）</h1>
+			<p><span class="code-highlight">line</span>需要定义两组坐标，在两坐标之间绘制一条线段。</p>
+
+			<pre>
+<code class="language-html line-numbers">&lt;svg width="100" height="100">
+	&lt;line x1="10" y1="10" x2="90" y2="90" stroke="#f04848" fill="transparent" />
+&lt;/svg></code>
+			</pre>
+
+			<svg width="100" height="100">
+				<line x1="10" y1="10" x2="90" y2="90" stroke="#f04848" fill="transparent" />
+			</svg>
+		</div>
+
+		<div class="demo">
+			<h1>折线（polyline）</h1>
+			<p><span class="code-highlight">polyline</span>需要定义多组坐标，依次连接各组坐标的点。</p>
+
+			<pre>
+<code class="language-html line-numbers">&lt;svg width="100" height="100">
+	&lt;polyline points="10,10 40,60 60,40 80,90" stroke="#f04848" fill="transparent" />
+&lt;/svg></code>
+			</pre>
+
+			<svg width="100" height="100">
+				<polyline points="10,10 40,60 60,40 80,90" stroke="#f04848" fill="transparent" />
+			</svg>
+		</div>
+
+		<div class="demo">
+			<h1>图形（polygon）</h1>
+			<p><span class="code-highlight">polygon</span>与<span class="code-highlight">polyline</span>相似，需要定义多组坐标，不同的是<span class="code-highlight">polygon</span>会自动闭合最后一组坐标与第一组坐标。</p>
+
+			<pre>
+<code class="language-html line-numbers">&lt;svg width="100" height="100">
+	&lt;polygon points="10,10 90,10 90,90" fill="transparent" stroke="#f04848" />
+&lt;/svg></code>
+			</pre>
+
+			<svg width="100" height="100">
+				<polygon points="10,10 90,10 90,90" fill="transparent" stroke="#f04848" />
+			</svg>
 		</div>
 
 		<div class="demo">
