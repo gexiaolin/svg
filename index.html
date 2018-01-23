@@ -60,6 +60,12 @@
 	<div class="progress"><span id="J_progress"></span></div>
 
 	<div class="container">
+	
+		<div class="demo">
+			<h1>SVG分享文档</h1>
+			<p>开始之前，我们先看几个小demo，来对<span class="code-highlight">&lt;svg></span>的语法有个大致的了解。</p>
+		</div>
+		
 		<div class="demo">
 			<h1>Demo 1</h1>
 			<pre>
@@ -569,7 +575,95 @@
 				</li>
 			</ul>
 		</div>
+		
+		<div class="demo">
+			<h1>剪切和遮罩</h1>
+			<ul>
+				<li>
+					<h2>剪切（&lt;clipPath&gt;）</h2>
+					<p>我们来尝试在圆形的基础上创建一个半圆。</p>
 
+					<pre>
+<code class="language-html line-numbers">&lt;svg width="100" height="100">
+	&lt;defs>
+		&lt;clipPath id="myClipPath">
+			&lt;rect x="10" y="10" width="80" height="40">&lt;/rect>
+		&lt;/clipPath>	
+	&lt;/defs>
+
+	&lt;circle cx="50" cy="50" r="40" fill="#f04848" clip-path="url(#myClipPath)"/>
+&lt;/svg></code>
+					</pre>
+
+					<svg width="100" height="100">
+						<defs>
+							<clipPath id="myClipPath">
+								<rect x="10" y="10" width="80" height="40"></rect>
+							</clipPath>	
+						</defs>
+
+						<circle cx="50" cy="50" r="40" fill="#f04848" clip-path="url(#myClipPath)"/>
+						<rect x="10" y="10" width="80" height="40" fill="transparent" stroke="#333" stroke-width="1" />
+						<circle cx="50" cy="50" r="40" fill="transparent" stroke="#04ffea" />
+					</svg>
+				</li>
+				<li>
+					<h2>遮罩（&lt;mask>）</h2>
+					<p>遮罩可以完成一些渐入、渐出的效果等。</p>
+
+					<pre>
+<code class="language-html line-numbers">&lt;svg width="200" height="100">
+	&lt;defs>
+		&lt;linearGradient id="gradientMask" x1="1" x2="0" y1="0" y2="0">
+			&lt;stop offset="0%" stop-color="#fff" stop-opacity="0"/>
+			&lt;stop offset="100%" stop-color="#fff" stop opacity="1"/>
+		&lt;/linearGradient>
+
+		&lt;mask id="myMask">
+			&lt;rect x="30" y="20" width="180" height="80" fill="url(#gradientMask)" />
+		&lt;/mask>
+	&lt;/defs>
+	&lt;text x="100" y="60" font-size="26" fill="#f04848" stroke="transparent"  text-anchor="middle" mask="url(#myMask)">SMZDM&lt;/text>
+&lt;/svg></code>
+					</pre>
+
+					<svg width="200" height="100">
+						<defs>
+							<linearGradient id="gradientMask" x1="1" x2="0" y1="0" y2="0">
+								<stop offset="0%" stop-color="#fff" stop-opacity="0"/>
+								<stop offset="100%" stop-color="#fff" stop opacity="1"/>
+							</linearGradient>
+
+							<mask id="myMask">
+								<rect x="30" y="20" width="180" height="80" fill="url(#gradientMask)" />
+							</mask>
+						</defs>
+						<text x="100" y="60" font-size="26" fill="#f04848" stroke="transparent"  text-anchor="middle" mask="url(#myMask)">SMZDM</text>
+					</svg>
+				</li>
+			</ul>
+		</div>
+
+		<div class="demo">
+			<h1>嵌入图像</h1>
+			<p>SVG也有一个<span class="code-highlight">img</span>元素，它的规格要求应用至少支持png、jpg和svg格式文件。</p>
+			<p class="tips">嵌入的图像会变成一个普通的SVG元素。</p>
+
+			<svg width="207" height="66">
+				<defs>
+					<linearGradient id="gradientMask2" x1="1" x2="0" y1="0" y2="0">
+						<stop offset="0%" stop-color="#fff" stop-opacity="0"/>
+						<stop offset="100%" stop-color="#fff" stop opacity="1"/>
+					</linearGradient>
+
+					<mask id="myMask2">
+						<rect x="0" y="0" width="207" height="66" fill="url(#gradientMask2)" />
+					</mask>
+				</defs>
+
+				<image xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://res.smzdm.com/pc/v1.0/dist/img/embed/logo.svg" width="207" height="66" mask="url(#myMask2)"></image>
+			</svg>
+		</div>
 	</div>
 
 	<script src="prism.js"></script>
