@@ -647,17 +647,56 @@
 		<div class="demo">
 			<h1>嵌入图像</h1>
 			<p>SVG也有一个<span class="code-highlight">img</span>元素，它的规格要求应用至少支持png、jpg和svg格式文件。</p>
-			<p class="tips">嵌入的图像会变成一个普通的SVG元素。</p>
+			<p class="tips">嵌入的图像会变成一个普通的SVG元素。下例同时添加了点击事件来改变遮罩层的渐变方向。</p>
 
-			<svg width="207" height="66">
+			<pre>
+<code class="language-html line-numbers">
+&lt;svg width="207" height="66" id="change">
+	&lt;defs>
+		&lt;linearGradient id="gradientMask2" x1="1" x2="0" y1="0" y2="0">
+			&lt;stop offset="0%" stop-color="#fff" stop-opacity="0"/>
+			&lt;stop offset="100%" stop-color="#fff" stop opacity="1"/>
+		&lt;/linearGradient>
+
+		&lt;linearGradient id="gradientMask3" x1="0" x2="1" y1="0" y2="0">
+			&lt;stop offset="0%" stop-color="#fff" stop-opacity="0"/>
+			&lt;stop offset="100%" stop-color="#fff" stop opacity="1"/>
+		&lt;/linearGradient>
+
+		&lt;mask id="myMask2">
+			&lt;rect id="J_ele" x="0" y="0" width="207" height="66" fill="url(#gradientMask2)" />
+		&lt;/mask>
+	&lt;/defs>
+
+	&lt;image xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://res.smzdm.com/pc/v1.0/dist/img/embed/logo.svg" width="207" height="66" mask="url(#myMask2)">&lt;/image>
+&lt;/svg>
+
+&lt;script>
+	var flag = true;
+
+	document.querySelector('#change').addEventListener('click', function () {
+		var attr = flag ? 'url(#gradientMask3)' : 'url(#gradientMask2)';
+		var ele = document.querySelector('#J_ele').setAttribute('fill', attr);
+		flag = !flag;
+	}, false);
+&lt;/script>
+</code>
+			</pre>
+
+			<svg width="207" height="66" id="change">
 				<defs>
 					<linearGradient id="gradientMask2" x1="1" x2="0" y1="0" y2="0">
 						<stop offset="0%" stop-color="#fff" stop-opacity="0"/>
 						<stop offset="100%" stop-color="#fff" stop opacity="1"/>
 					</linearGradient>
 
+					<linearGradient id="gradientMask3" x1="0" x2="1" y1="0" y2="0">
+						<stop offset="0%" stop-color="#fff" stop-opacity="0"/>
+						<stop offset="100%" stop-color="#fff" stop opacity="1"/>
+					</linearGradient>
+
 					<mask id="myMask2">
-						<rect x="0" y="0" width="207" height="66" fill="url(#gradientMask2)" />
+						<rect id="J_ele" x="0" y="0" width="207" height="66" fill="url(#gradientMask2)" />
 					</mask>
 				</defs>
 
@@ -674,6 +713,14 @@
 			
 			document.querySelector('#J_progress').style.width = sTop / dHeight * 100 + '%';
 		};
+
+		var flag = true;
+
+		document.querySelector('#change').addEventListener('click', function () {
+			var attr = flag ? 'url(#gradientMask3)' : 'url(#gradientMask2)';
+			var ele = document.querySelector('#J_ele').setAttribute('fill', attr);
+			flag = !flag;
+		}, false);
 	</script>
 </body>
 </html>
